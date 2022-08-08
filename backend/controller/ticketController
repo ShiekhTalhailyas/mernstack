@@ -52,16 +52,16 @@ const getTicket = asyncHandler(async (req, res) => {
 // @access  Private
 const createTicket = asyncHandler(async (req, res) => {
   const { product, description } = req.body;
-
+  console.log("backend create ticket");
   if (!product || !description) {
     res.status(400);
     throw new Error("Please add a product and description");
   }
 
   // Get user using the id in the JWT
-  const user = await User.findById(req.user.id);
+  const uniqueUser = await User.findById(req.user.id);
 
-  if (!user) {
+  if (!uniqueUser) {
     res.status(401);
     throw new Error("User not found");
   }
@@ -72,7 +72,6 @@ const createTicket = asyncHandler(async (req, res) => {
     user: req.user.id,
     status: "new",
   });
-
   res.status(201).json(ticket);
 });
 

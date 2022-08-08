@@ -14,7 +14,6 @@ export default function Navbar() {
     dispatch(reset());
     navigate("/");
   };
-  console.log('navbar user value:', user);
   return (
     <>
       <header className="header">

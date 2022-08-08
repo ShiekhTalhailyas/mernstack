@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { login } from "../features/auth/authSlice";
 import { useNavigate } from "react-router-dom";
 import Spinner from "../components/Spinner";
-import {reset} from "../features/auth/authSlice"
+import { reset } from "../features/auth/authSlice";
 import { toast } from "react-toastify";
 
 export default function Login() {
@@ -21,18 +21,18 @@ export default function Login() {
     (state) => state.authSlice
   );
 
-   useEffect(() => {
-     if (isError) {
-       toast.error(message);
-     }
+  useEffect(() => {
+    if (isError) {
+      toast.error(message);
+    }
 
-     // Redirect when logged in
-     if (isSuccess || user) {
-       navigate("/");
-     }
+    // Redirect when logged in
+    if (isSuccess || user) {
+      navigate("/");
+    }
 
-     dispatch(reset());
-   }, [isError, isSuccess, user, message, navigate, dispatch]);
+    dispatch(reset());
+  }, [isError, isSuccess, user, message, navigate, dispatch]);
   const onChange = (e) => {
     setFormData((previousState) => ({
       ...previousState,
@@ -46,13 +46,11 @@ export default function Login() {
       email,
       password,
     };
-    dispatch(login(userData));
-  console.log('login submit button called(userdata)',userData)
-    navigate("/");
-  };
 
-  if (isLoading){
-    return <Spinner />
+    dispatch(login(userData));
+  };
+  if (isLoading) {
+    return <Spinner />;
   }
   return (
     <>

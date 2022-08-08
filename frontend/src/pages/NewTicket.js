@@ -9,11 +9,11 @@ import BackButton from "../components/BackButton";
 function NewTicket() {
   const { user } = useSelector((state) => state.authSlice);
   const { isLoading, isError, isSuccess, message } = useSelector(
-    (state) => state.tickets
+    (state) => state.ticketSlice
   );
 
-  const [name] = useState("user.name");
-  const [email] = useState("user.email");
+  const [name] = useState(user.name);
+  const [email] = useState(user.email);
   const [product, setProduct] = useState("iPhone");
   const [description, setDescription] = useState("");
 
@@ -27,6 +27,7 @@ function NewTicket() {
 
     if (isSuccess) {
       dispatch(reset());
+      console.log();
       navigate("/tickets");
     }
 
@@ -35,7 +36,6 @@ function NewTicket() {
 
   const onSubmit = (e) => {
     e.preventDefault();
-    console.log(product);
     dispatch(createTicket({ product, description }));
   };
 
@@ -92,8 +92,7 @@ function NewTicket() {
         </form>
       </section>
     </>
-      
-  )
+  );
 }
 
 export default NewTicket;

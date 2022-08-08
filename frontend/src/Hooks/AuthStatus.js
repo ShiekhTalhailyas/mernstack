@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 const useAuthStatus = () => {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [checkingStatus, setcheckingStatus] = useState(true);
+  const [checkingStatus, setCheckingStatus] = useState(true);
 
   const { user } = useSelector((state) => state.authSlice);
   console.log(user);
@@ -14,10 +14,20 @@ const useAuthStatus = () => {
     } else {
       setLoggedIn(false);
     }
-    setcheckingStatus(false);
+    setCheckingStatus(false);
   }, [user]);
 
-  //console.log('loggedIN:', loggedIn, 'CS', checkingStatus);
+  console.log("loggedIN:", loggedIn, "CS", checkingStatus);
   return { loggedIn, checkingStatus };
 };
-export default useAuthStatus
+
+// useEffect(() => {
+//   if (user) {
+//     setLoggedIn(true);
+//   } else {
+//     setLoggedIn(false);
+//   }
+//   setcheckingStatus(false);
+// }, [user]);
+
+export default useAuthStatus;

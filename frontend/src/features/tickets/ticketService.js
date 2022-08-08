@@ -1,27 +1,29 @@
 import axios from "axios";
 
-const API_URL = '/api/tickets/'
+const API_URL = "/api/tickets/";
 
-const createTicketBE = async (ticket) => {
-   const response = await axios.post(API_URL, ticket)
-    if (response.data) {
-      localStorage.setItem("user", JSON.stringify(response.data));
-    }
-    return response.data;
-}
-const getTicketsBE = async () => {
-    const response = await axios.get(API_URL)
-    if (response.data) {
-      localStorage.setItem("user", JSON.stringify(response.data));
-    }
-    return response.data;
-}
-
-
+const createTicketBE = async (ticket, token) => {
+  
+  const response = await axios.post(API_URL, ticket, {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  return response.data;
+};
+const getTicketsBE = async (token) => {
+  const config = {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  };
+  const response = await axios.get(API_URL, config);
+  return response.data;
+};
 
 const ticketService = {
-    createTicketBE,
-    getTicketsBE
-}
+  createTicketBE,
+  getTicketsBE,
+};
 
-export default ticketService
+export default ticketService;

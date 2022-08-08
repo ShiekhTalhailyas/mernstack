@@ -1,9 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import authService from "./authService";
 import { toast } from "react-toastify";
-import axios from "axios";
-
-const API_URL = "/api/user/";
 
 const user = JSON.parse(localStorage.getItem("user"));
 const { logOutBE, registerBE, logInBE } = authService;
@@ -36,15 +33,7 @@ export const register = createAsyncThunk(
 
 export const login = createAsyncThunk("login/auth", async (user, thunkAPI) => {
   try {
-    // return await logInBE(user);
-console.log('axios')
-    const response = await axios.post(API_URL + "login", user);
-    console.log("axios response about login", response);
-    if (response.data) {
-      localStorage.setItem("user", JSON.stringify(response.data));
-    }
-    return response.data;
-    //console.log('called try block in login');
+     return await logInBE(user);
   } catch (error) {
     const message =
       (error.response && error.response.data && error.response.data.message) ||
