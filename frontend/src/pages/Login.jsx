@@ -61,6 +61,7 @@ export default function Login() {
       <p>Please Enter your Login Details</p>
       <form onSubmit={onSubmit}>
         <div className="form-group">
+          <label>Email </label>
           <input
             type="email"
             id="email"
@@ -72,6 +73,7 @@ export default function Login() {
         </div>
 
         <div className="form-group">
+          <label>Password </label>
           <input
             type="password"
             id="password"

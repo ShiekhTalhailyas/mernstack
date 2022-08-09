@@ -62,6 +62,7 @@ export default function Register() {
       <p>Please Create an account</p>
       <form onSubmit={onSubmit}>
         <div className="form-group">
+          <label>Name </label>
           <input
             type="text"
             id="name"
@@ -72,6 +73,7 @@ export default function Register() {
           />
         </div>
         <div className="form-group">
+          <label>Email </label>
           <input
             type="email"
             id="email"
@@ -83,6 +85,7 @@ export default function Register() {
         </div>
 
         <div className="form-group">
+          <label>Password</label>
           <input
             type="password"
             id="password"
@@ -94,6 +97,7 @@ export default function Register() {
         </div>
 
         <div className="form-group">
+          <label>Re-Enter Password</label>
           <input
             type="password"
             id="password2"
