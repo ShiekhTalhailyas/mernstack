@@ -15,12 +15,10 @@ export const createTicket = createAsyncThunk(
   "tickets/create",
   async (ticketData, thunkAPI) => {
     try {
-      console.log("createticket");
       const token = thunkAPI.getState().auth.user.token;
-     
+
       return await ticketService.createTicket(ticketData, token);
     } catch (error) {
-      
       const message =
         (error.response &&
           error.response.data &&
@@ -38,9 +36,7 @@ export const getTickets = createAsyncThunk(
   "tickets/getAll",
   async (_, thunkAPI) => {
     try {
-      console.log('getTickets');
-      const token = thunkAPI.getState().auth.user.token;
-       console.log(token, "token");
+      const token = thunkAPI.getState().authSlice.user.token;
       return await ticketService.getTickets(token);
     } catch (error) {
       const message =
@@ -60,7 +56,7 @@ export const getTicket = createAsyncThunk(
   "tickets/get",
   async (ticketId, thunkAPI) => {
     try {
-      const token = thunkAPI.getState().auth.user.token;
+      const token = thunkAPI.getState().authSlice.user.token;
       return await ticketService.getTicket(ticketId, token);
     } catch (error) {
       const message =
